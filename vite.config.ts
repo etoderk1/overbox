@@ -5,7 +5,7 @@ import { defineConfig } from 'vite';
 
 export default defineConfig({
   // Замени 'overbox' на точное название твоего репозитория на GitHub
-  base: '/overbox/',
+  base: '/',
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {

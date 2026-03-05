@@ -93,7 +93,7 @@ export function Header({ onNavigate, currentPage }: HeaderProps) {
               Магазин <ExternalLink size={16} />
             </a>
             <a 
-              href="https://discord.gg/boxpvp" 
+              href="https://discord.gg/FPDxVBKpAq" 
               target="_blank" 
               rel="noreferrer"
               className="bg-[#36e826] hover:bg-[#2fb820] text-black px-5 py-2.5 rounded-xl font-bold text-sm transition-all shadow-[0_0_15px_rgba(54,232,38,0.2)] hover:shadow-[0_0_25px_rgba(54,232,38,0.4)] hover:-translate-y-0.5"

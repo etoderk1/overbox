@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { About } from './components/About';
@@ -8,25 +8,39 @@ import { FAQ } from './components/FAQ';
 import { JoinCTA } from './components/JoinCTA';
 
 function App() {
-  const [currentPage, setCurrentPage] = useState<'home' | 'rules' | 'faq'>('home');
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleNavigate = (page: 'home' | 'rules' | 'faq') => {
+    if (page === 'home') navigate('/');
+    if (page === 'rules') navigate('/rules');
+    if (page === 'faq') navigate('/faq');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const currentPage = location.pathname === '/rules' ? 'rules'
+    : location.pathname === '/faq' ? 'faq'
+    : 'home';
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white selection:bg-[#36e826] selection:text-black font-sans">
-      <Header onNavigate={setCurrentPage} currentPage={currentPage} />
-      
+      <Header onNavigate={handleNavigate} currentPage={currentPage} />
+
       <main>
-        {currentPage === 'home' && (
-          <>
-            <Hero />
-            <About />
-            <JoinCTA />
-          </>
-        )}
-        {currentPage === 'rules' && <Rules />}
-        {currentPage === 'faq' && <FAQ />}
+        <Routes>
+          <Route path="/" element={
+            <>
+              <Hero />
+              <About />
+              <JoinCTA />
+            </>
+          } />
+          <Route path="/rules" element={<Rules />} />
+          <Route path="/faq" element={<FAQ />} />
+        </Routes>
       </main>
 
-      <Footer onNavigate={setCurrentPage} />
+      <Footer onNavigate={handleNavigate} />
     </div>
   );
 }

@@ -19,7 +19,6 @@ function App() {
           <>
             <Hero />
             <About />
-            <HowToPlay />
             <JoinCTA />
           </>
         )}

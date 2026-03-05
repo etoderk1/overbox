@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { About } from './components/About';
-import { HowToPlay } from './components/HowToPlay';
 import { Footer } from './components/Footer';
 import { Rules } from './components/Rules';
 import { FAQ } from './components/FAQ';

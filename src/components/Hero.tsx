@@ -41,111 +41,101 @@ export function Hero() {
         setOnlinePlayers(0);
       }
     };
-    
     fetchOnline();
     const interval = setInterval(fetchOnline, 60000);
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <section className="relative pt-32 pb-32 overflow-hidden min-h-screen flex items-center">
-      {/* Background Image with Overlay */}
+    <section className="relative pt-24 pb-16 md:pt-32 md:pb-32 overflow-hidden min-h-screen flex items-center">
+      {/* Background */}
       <div className="absolute inset-0 z-0">
-        <img 
-          src="https://i.postimg.cc/gk2MF463/photo-2026-02-21-14-00-45.jpg" 
-          alt="Background" 
-          className="w-full h-full object-cover"
+        <img
+          src="https://i.postimg.cc/gk2MF463/photo-2026-02-21-14-00-45.jpg"
+          alt="Background"
+          className="w-full h-full object-cover object-center"
         />
         <div className="absolute inset-0 bg-[#050505]/85"></div>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,_rgba(5,5,5,0.4)_0%,_#050505_100%)]"></div>
       </div>
 
-      {/* Dynamic Blobs */}
+      {/* Blobs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-        <motion.div 
-          animate={{ 
-            scale: [1, 1.2, 1],
-            opacity: [0.1, 0.2, 0.1],
-            x: [0, 50, 0],
-            y: [0, -50, 0]
-          }}
+        <motion.div
+          animate={{ scale: [1, 1.2, 1], opacity: [0.1, 0.2, 0.1], x: [0, 50, 0], y: [0, -50, 0] }}
           transition={{ duration: 10, repeat: Infinity }}
-          className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-[#36e826]/5 blur-[120px] rounded-full"
+          className="absolute top-[-10%] right-[-5%] w-[300px] h-[300px] md:w-[600px] md:h-[600px] bg-[#36e826]/5 blur-[80px] md:blur-[120px] rounded-full"
         />
-        <motion.div 
-          animate={{ 
-            scale: [1, 1.3, 1],
-            opacity: [0.05, 0.15, 0.05],
-            x: [0, -30, 0],
-            y: [0, 30, 0]
-          }}
+        <motion.div
+          animate={{ scale: [1, 1.3, 1], opacity: [0.05, 0.15, 0.05], x: [0, -30, 0], y: [0, 30, 0] }}
           transition={{ duration: 15, repeat: Infinity, delay: 1 }}
-          className="absolute bottom-[-10%] left-[-10%] w-[700px] h-[700px] bg-emerald-800/5 blur-[150px] rounded-full"
+          className="absolute bottom-[-10%] left-[-10%] w-[300px] h-[300px] md:w-[700px] md:h-[700px] bg-emerald-800/5 blur-[80px] md:blur-[150px] rounded-full"
         />
       </div>
-      
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-16">
-          
-          <motion.div 
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="lg:w-1/2 text-left"
-          >
-            <h1 className="text-5xl md:text-7xl font-black text-white mb-6 leading-tight tracking-tight">
-              Твое Новое <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#36e826] to-emerald-500">Приключение</span>
-            </h1>
-            
-            <p className="text-lg text-gray-400 mb-10 leading-relaxed max-w-xl">
-              Залетай на <span className="text-white font-bold">OverBox</span>. Прокачивайся, сражайся в интенсивных PvP битвах и доминируй в топе лидеров.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4 mb-16">
-              <motion.button 
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={handleCopy}
-                className="group relative bg-[#36e826] hover:bg-[#2fb820] text-black px-8 py-4 rounded-xl font-bold text-lg transition-all shadow-[0_0_20px_rgba(54,232,38,0.3)] hover:shadow-[0_0_30px_rgba(54,232,38,0.5)] flex items-center justify-center gap-3 overflow-hidden"
-              >
-                <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
-                {copied ? <Check size={24} /> : <Copy size={24} />}
-                <span>{copied ? 'IP СКОПИРОВАН!' : 'СКОПИРОВАТЬ IP'}</span>
-              </motion.button>
-              
-              <motion.a 
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                href="https://shop.overbox.fun"
-                className="group bg-[#1a1a1a] border border-white/10 hover:border-[#36e826]/50 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all flex items-center justify-center gap-3 hover:bg-[#232323]"
-              >
-                <ShoppingCart size={24} className="text-gray-400 group-hover:text-[#36e826] transition-colors" />
-                <span>МАГАЗИН</span>
-              </motion.a>
-            </div>
 
-            <div className="grid grid-cols-2 gap-6">
-              <div className="bg-white/5 backdrop-blur-md border border-white/5 p-4 rounded-2xl">
-                <div className="flex items-center gap-3 mb-1">
-                  <Users size={20} className="text-[#36e826]" />
-                  <h3 className="text-2xl font-bold text-white">25к+</h3>
-                </div>
-                <p className="text-gray-500 text-sm font-medium">Зарегистрированные игроки</p>
+      <div className="container mx-auto px-4 relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="max-w-2xl mx-auto text-center lg:text-left lg:mx-0"
+        >
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-black text-white mb-4 md:mb-6 leading-tight tracking-tight">
+            Твое Новое <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#36e826] to-emerald-500">
+              Приключение
+            </span>
+          </h1>
+
+          <p className="text-base md:text-lg text-gray-400 mb-8 md:mb-10 leading-relaxed">
+            Залетай на <span className="text-white font-bold">OverBox</span>. Прокачивайся, сражайся в интенсивных PvP битвах и доминируй в топе лидеров.
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-3 mb-10 md:mb-16">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={handleCopy}
+              className="group relative bg-[#36e826] hover:bg-[#2fb820] text-black px-6 py-4 rounded-xl font-bold text-base md:text-lg transition-all shadow-[0_0_20px_rgba(54,232,38,0.3)] hover:shadow-[0_0_30px_rgba(54,232,38,0.5)] flex items-center justify-center gap-3 overflow-hidden w-full sm:w-auto"
+            >
+              <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+              {copied ? <Check size={22} /> : <Copy size={22} />}
+              <span>{copied ? 'IP СКОПИРОВАН!' : 'СКОПИРОВАТЬ IP'}</span>
+            </motion.button>
+
+            <motion.a
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              href="https://shop.overbox.fun"
+              className="group bg-[#1a1a1a] border border-white/10 hover:border-[#36e826]/50 text-white px-6 py-4 rounded-xl font-bold text-base md:text-lg transition-all flex items-center justify-center gap-3 hover:bg-[#232323] w-full sm:w-auto"
+            >
+              <ShoppingCart size={22} className="text-gray-400 group-hover:text-[#36e826] transition-colors" />
+              <span>МАГАЗИН</span>
+            </motion.a>
+          </div>
+
+          <div className="grid grid-cols-2 gap-3 md:gap-6 max-w-sm mx-auto lg:mx-0">
+            <div className="bg-white/5 backdrop-blur-md border border-white/5 p-3 md:p-4 rounded-2xl">
+              <div className="flex items-center gap-2 md:gap-3 mb-1">
+                <Users size={18} className="text-[#36e826] flex-shrink-0" />
+                <h3 className="text-xl md:text-2xl font-bold text-white">25к+</h3>
               </div>
-              <div className="bg-white/5 backdrop-blur-md border border-white/5 p-4 rounded-2xl">
-                <div className="flex items-center gap-3 mb-1">
-                  <Server size={20} className="text-[#36e826]" />
-                  <h3 className="text-2xl font-bold text-white">{onlinePlayers !== null ? onlinePlayers : '...'}</h3>
-                </div>
-                <p className="text-gray-500 text-sm font-medium">Онлайн</p>
-              </div>
+              <p className="text-gray-500 text-xs md:text-sm font-medium">Зарегистрированные игроки</p>
             </div>
-          </motion.div>
-        </div>
+            <div className="bg-white/5 backdrop-blur-md border border-white/5 p-3 md:p-4 rounded-2xl">
+              <div className="flex items-center gap-2 md:gap-3 mb-1">
+                <Server size={18} className="text-[#36e826] flex-shrink-0" />
+                <h3 className="text-xl md:text-2xl font-bold text-white">
+                  {onlinePlayers !== null ? onlinePlayers : '...'}
+                </h3>
+              </div>
+              <p className="text-gray-500 text-xs md:text-sm font-medium">Онлайн</p>
+            </div>
+          </div>
+        </motion.div>
       </div>
 
-      <div className="absolute bottom-0 left-0 w-full h-64 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/60 to-transparent z-20 pointer-events-none"></div>
+      <div className="absolute bottom-0 left-0 w-full h-32 md:h-64 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/60 to-transparent z-20 pointer-events-none"></div>
     </section>
   );
 }

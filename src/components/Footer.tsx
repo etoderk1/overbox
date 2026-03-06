@@ -39,6 +39,7 @@ export function Footer({ onNavigate }: FooterProps) {
               <li><FooterLink onClick={() => onNavigate('home')}>Главная</FooterLink></li>
               <li><FooterLink onClick={() => onNavigate('rules')}>Правила Сервера</FooterLink></li>
               <li><FooterLink onClick={() => onNavigate('faq')}>Частые Вопросы</FooterLink></li>
+              <li><FooterLink onClick={() => onNavigate('donat')}>⭐️Как оплатить из Украины</FooterLink></li>
               <li><a href="https://shop.overbox.fun" className="text-gray-400 hover:text-[#36e826] transition-colors">Магазин</a></li>
             </ul>
           </div>

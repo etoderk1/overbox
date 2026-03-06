@@ -5,8 +5,20 @@ import { Sword, ShieldCheck, Zap, Copy, Check } from 'lucide-react';
 export function JoinCTA() {
   const [copied, setCopied] = useState(false);
 
-  const handleCopy = () => {
-    navigator.clipboard.writeText("play.overbox.fun");
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText("play.overbox.fun");
+    } catch {
+      const el = document.createElement('textarea');
+      el.value = "play.overbox.fun";
+      el.style.position = 'fixed';
+      el.style.opacity = '0';
+      document.body.appendChild(el);
+      el.focus();
+      el.select();
+      document.execCommand('copy');
+      document.body.removeChild(el);
+    }
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -16,7 +28,6 @@ export function JoinCTA() {
       <div className="container mx-auto px-4 relative z-10">
         <div className="bg-gradient-to-r from-[#1a1a1a] to-[#111] border border-white/5 rounded-3xl p-12 md:p-20 text-center relative overflow-hidden group">
           
-          {/* Animated Background Glow */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#36e826]/10 blur-[100px] rounded-full group-hover:bg-[#36e826]/20 transition-colors duration-700"></div>
 
           <motion.div

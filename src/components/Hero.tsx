@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
-import { Copy, ShoppingCart, Users, Server, Gamepad2, Check } from 'lucide-react';
+import { Copy, ShoppingCart, Users, Server, Check } from 'lucide-react';
 
 export function Hero() {
   const [copied, setCopied] = useState(false);
@@ -8,8 +8,20 @@ export function Hero() {
 
   const serverIp = "play.overbox.fun";
 
-  const handleCopy = () => {
-    navigator.clipboard.writeText(serverIp);
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(serverIp);
+    } catch {
+      const el = document.createElement('textarea');
+      el.value = serverIp;
+      el.style.position = 'fixed';
+      el.style.opacity = '0';
+      document.body.appendChild(el);
+      el.focus();
+      el.select();
+      document.execCommand('copy');
+      document.body.removeChild(el);
+    }
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -31,7 +43,7 @@ export function Hero() {
     };
     
     fetchOnline();
-    const interval = setInterval(fetchOnline, 60000); // Update every minute
+    const interval = setInterval(fetchOnline, 60000);
     return () => clearInterval(interval);
   }, []);
 
@@ -44,13 +56,11 @@ export function Hero() {
           alt="Background" 
           className="w-full h-full object-cover"
         />
-        {/* Dark Void Overlay */}
         <div className="absolute inset-0 bg-[#050505]/85"></div>
-        {/* Radial Gradient for Spotlight Effect */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,_rgba(5,5,5,0.4)_0%,_#050505_100%)]"></div>
       </div>
 
-      {/* Dynamic Blobs (Subtle) */}
+      {/* Dynamic Blobs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
         <motion.div 
           animate={{ 
@@ -77,15 +87,12 @@ export function Hero() {
       <div className="container mx-auto px-4 relative z-10">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-16">
           
-          {/* Text Content */}
           <motion.div 
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="lg:w-1/2 text-left"
           >
-
-            
             <h1 className="text-5xl md:text-7xl font-black text-white mb-6 leading-tight tracking-tight">
               Твое Новое <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#36e826] to-emerald-500">Приключение</span>
@@ -118,14 +125,13 @@ export function Hero() {
               </motion.a>
             </div>
 
-            {/* Stats Row */}
-            <div className="grid grid-cols-3 gap-6">
+            <div className="grid grid-cols-2 gap-6">
               <div className="bg-white/5 backdrop-blur-md border border-white/5 p-4 rounded-2xl">
                 <div className="flex items-center gap-3 mb-1">
                   <Users size={20} className="text-[#36e826]" />
                   <h3 className="text-2xl font-bold text-white">25к+</h3>
                 </div>
-                <p className="text-gray-500 text-sm font-medium">Зарегистрированные игроки.</p>
+                <p className="text-gray-500 text-sm font-medium">Зарегистрированные игроки</p>
               </div>
               <div className="bg-white/5 backdrop-blur-md border border-white/5 p-4 rounded-2xl">
                 <div className="flex items-center gap-3 mb-1">
@@ -136,12 +142,9 @@ export function Hero() {
               </div>
             </div>
           </motion.div>
-
-
         </div>
       </div>
 
-      {/* Smooth Gradient Transition */}
       <div className="absolute bottom-0 left-0 w-full h-64 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/60 to-transparent z-20 pointer-events-none"></div>
     </section>
   );

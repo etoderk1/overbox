@@ -23,6 +23,7 @@ export function Header({ onNavigate, currentPage }: HeaderProps) {
     { name: 'Главная', id: 'home' as const },
     { name: 'Правила', id: 'rules' as const },
     { name: 'FAQ', id: 'faq' as const },
+    { name: '⭐️Как оплатить из Украины', id: 'donat' as const },
   ];
 
   const handleNavClick = (id: 'home' | 'rules' | 'faq') => {

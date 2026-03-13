@@ -7,22 +7,25 @@ import { Rules } from './components/Rules';
 import { FAQ } from './components/FAQ';
 import { JoinCTA } from './components/JoinCTA';
 import { UkrainePayment } from './components/UkrainePayment';
+import { Ideas } from './components/Ideas';
 
 function App() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const handleNavigate = (page: 'home' | 'rules' | 'faq' | 'donat') => {
+  const handleNavigate = (page: 'home' | 'rules' | 'faq' | 'donat' | 'ideas') => {
     if (page === 'home') navigate('/');
     if (page === 'rules') navigate('/rules');
     if (page === 'faq') navigate('/faq');
     if (page === 'donat') navigate('/donat');
+    if (page === 'ideas') navigate('/ideas');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const currentPage = location.pathname === '/rules' ? 'rules'
     : location.pathname === '/faq' ? 'faq'
     : location.pathname === '/donat' ? 'donat'
+    : location.pathname === '/ideas' ? 'ideas'
     : 'home';
 
   return (
@@ -41,6 +44,7 @@ function App() {
           <Route path="/rules" element={<Rules />} />
           <Route path="/faq" element={<FAQ />} />
           <Route path="/donat" element={<UkrainePayment />} />
+          <Route path="/ideas" element={<Ideas />} />
         </Routes>
       </main>
 

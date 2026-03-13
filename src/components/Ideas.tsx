@@ -122,7 +122,7 @@ export function Ideas() {
           <div className="text-center md:text-left">
             <h3 className="text-lg md:text-xl font-bold text-white mb-1 md:mb-2">Вознаграждение за лучшие идеи!</h3>
             <p className="text-gray-300 text-sm md:text-base leading-relaxed">
-              Если ваша идея будет реализована на сервере, вы получите ценные награды: донат-валюту, уникальные титулы или привилегии. Сделаем OverBox лучше вместе!
+              Если ваша идея будет реализована на сервере, вы получите ценные награды. Сделаем OverBox лучше вместе!
             </p>
           </div>
         </motion.div>
@@ -146,7 +146,7 @@ export function Ideas() {
               </div>
               <h3 className="text-2xl md:text-3xl font-bold text-white mb-3 md:mb-4">Спасибо за идею!</h3>
               <p className="text-gray-400 text-base md:text-lg max-w-md mx-auto">
-                Ваше предложение успешно отправлено администрации. Если оно нам понравится, мы свяжемся с вами в игре!
+                Ваше предложение успешно отправлено администрации. Если оно нам понравится, мы выдадим награду вам на сервере!
               </p>
             </motion.div>
           ) : isOnCooldown ? (

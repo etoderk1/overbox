@@ -3,8 +3,8 @@ import { Menu, X, ExternalLink, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
 interface HeaderProps {
-  onNavigate: (page: 'home' | 'rules' | 'faq' | 'donat') => void;
-  currentPage: 'home' | 'rules' | 'faq' | 'donat';
+  onNavigate: (page: 'home' | 'rules' | 'faq' | 'donat' | 'ideas') => void;
+  currentPage: 'home' | 'rules' | 'faq' | 'donat' | 'ideas';
 }
 
 export function Header({ onNavigate, currentPage }: HeaderProps) {
@@ -17,7 +17,6 @@ export function Header({ onNavigate, currentPage }: HeaderProps) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Закрывать меню при изменении размера экрана
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 1024) setIsMobileMenuOpen(false);
@@ -26,7 +25,6 @@ export function Header({ onNavigate, currentPage }: HeaderProps) {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Блокировать скролл когда меню открыто
   useEffect(() => {
     if (isMobileMenuOpen) {
       document.body.style.overflow = 'hidden';
@@ -40,10 +38,11 @@ export function Header({ onNavigate, currentPage }: HeaderProps) {
     { name: 'Главная', id: 'home' as const },
     { name: 'Правила', id: 'rules' as const },
     { name: 'FAQ', id: 'faq' as const },
+    { name: '💡 Идеи', id: 'ideas' as const },
     { name: '⭐️ Оплата из Украины', id: 'donat' as const },
   ];
 
-  const handleNavClick = (id: 'home' | 'rules' | 'faq' | 'donat') => {
+  const handleNavClick = (id: 'home' | 'rules' | 'faq' | 'donat' | 'ideas') => {
     onNavigate(id);
     setIsMobileMenuOpen(false);
     window.scrollTo({ top: 0, behavior: 'smooth' });
